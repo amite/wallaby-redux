@@ -2,8 +2,13 @@ import React, { Component } from 'react'
 import Status from './components/Status'
 import wallet from './img/wallet.png'
 import { connect } from 'react-redux'
+import { addDeposit } from '../state/ducks/transactions/actions'
 
 class App extends Component {
+  handleAddDeposit = () => {
+    this.props.dispatch(addDeposit(3000))
+  }
+
   render() {
     return (
       <div className="App">
@@ -13,7 +18,9 @@ class App extends Component {
             <h1 className="title">Wallaby</h1>
           </header>
           <Status />
-          <button className="deposit">Add Deposit</button>
+          <button onClick={this.handleAddDeposit} className="deposit">
+            Add Deposit
+          </button>
           <button className="withdraw">Add Expense</button>
         </div>
       </div>
@@ -21,4 +28,4 @@ class App extends Component {
   }
 }
 
-export default App
+export default connect()(App)

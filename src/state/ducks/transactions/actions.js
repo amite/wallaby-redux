@@ -1,10 +1,9 @@
 import types from './types'
-import constants from './constants'
 
-export const addDeposit = () => {
+export const addDeposit = amount => {
   return {
     type: types.ADD_DEPOSIT,
-    amount: constants.DEFAULT_BALANCE
+    amount: amount
   }
 }
 
