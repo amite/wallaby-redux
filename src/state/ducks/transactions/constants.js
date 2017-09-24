@@ -1,0 +1,7 @@
+const DEFAULT_BALANCE = 2300
+const ADD_DEPOSIT = 'ADD_DEPOSIT'
+
+export default {
+  DEFAULT_BALANCE,
+  ADD_DEPOSIT
+}
