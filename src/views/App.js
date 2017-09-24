@@ -11,6 +11,8 @@ import {
 } from '../state/ducks/transactions/actions'
 import { transactionSelectors } from '../state/ducks/transactions'
 
+import Transactions from './containers/Transactions'
+
 import {
   DEFAULT_DEPOSIT_AMOUNT,
   DEFAULT_SPEND_AMOUNT
@@ -51,6 +53,7 @@ class App extends Component {
             Add Expense
           </button>
         </div>
+        <Transactions />
         <Notification
           isActive={this.props.isActive}
           message={this.props.message}

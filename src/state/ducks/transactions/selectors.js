@@ -12,8 +12,13 @@ export const getCurrentNotificationMessage = state => {
   return fromTransaction.getCurrentNotificationMessage(state)
 }
 
+export const getAllTransactions = state => {
+  return fromTransaction.getAllTransactions(state)
+}
+
 export default {
   getCurrentBalance,
   getCurrentNotificationState,
-  getCurrentNotificationMessage
+  getCurrentNotificationMessage,
+  getAllTransactions
 }

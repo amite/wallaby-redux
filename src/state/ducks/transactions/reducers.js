@@ -10,7 +10,21 @@ state: {
 */
 
 const transactionsReducer = (state = [], action) => {
-  return state
+  switch (action.type) {
+    case types.ADD_DEPOSIT:
+      return [
+        ...state,
+        {
+          type: 'Deposit',
+          amount: action.amount,
+          date: action.date,
+          note: action.note
+        }
+      ]
+
+    default:
+      return state
+  }
 }
 
 const currentBalanceReducer = (state = DEFAULT_BALANCE, action) => {
@@ -63,6 +77,10 @@ export const getCurrentNotificationState = state => {
 
 export const getCurrentNotificationMessage = state => {
   return state.transactions.notifications.message
+}
+
+export const getAllTransactions = state => {
+  return state.transactions.transactions
 }
 
 export default reducer
