@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Status from './components/Status'
 import wallet from './img/wallet.png'
+import { connect } from 'react-redux'
 
 class App extends Component {
   render() {

@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 import types from './types'
-import DEFAULT_BALANCE from './constants'
+import { DEFAULT_BALANCE } from './constants'
 
 /* State shape
 state: {
@@ -9,12 +9,21 @@ state: {
 }
 */
 
-const transactionsReducer = (state = []) => {
+const transactionsReducer = (state = [], action) => {
   return state
 }
 
-const currentBalanceReducer = (state = DEFAULT_BALANCE) => {
-  return state.DEFAULT_BALANCE
+const currentBalanceReducer = (state = DEFAULT_BALANCE, action) => {
+  // console.log('initial state:', state)
+  switch (action) {
+    case types.ADD_DEPOSIT:
+      return {
+        ...state,
+        currentBalance: state + action.amount
+      }
+    default:
+      return state
+  }
 }
 
 const reducer = combineReducers({
@@ -22,8 +31,10 @@ const reducer = combineReducers({
   currentBalance: currentBalanceReducer
 })
 
-export const getCurrentBalance = ({ transactions }) => {
-  return transactions.currentBalance
+export const getCurrentBalance = state => {
+  console.log(state)
+
+  return state.transactions.currentBalance
 }
 
 export default reducer
