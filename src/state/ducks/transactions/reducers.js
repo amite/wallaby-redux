@@ -17,6 +17,8 @@ const currentBalanceReducer = (state = DEFAULT_BALANCE, action) => {
   switch (action.type) {
     case types.ADD_DEPOSIT:
       return state + action.amount
+    case types.ADD_EXPENSE:
+      return state - action.amount
     default:
       return state
   }
