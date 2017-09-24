@@ -6,7 +6,7 @@ import { addDeposit } from '../state/ducks/transactions/actions'
 
 class App extends Component {
   handleAddDeposit = () => {
-    this.props.dispatch(addDeposit(3000))
+    this.props.addDeposit(3000)
   }
 
   render() {
@@ -28,4 +28,12 @@ class App extends Component {
   }
 }
 
-export default connect()(App)
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    addDeposit: amount => {
+      dispatch(addDeposit(amount))
+    }
+  }
+}
+
+export default connect(null, mapDispatchToProps)(App)

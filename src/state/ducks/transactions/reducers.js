@@ -14,7 +14,6 @@ const transactionsReducer = (state = [], action) => {
 }
 
 const currentBalanceReducer = (state = DEFAULT_BALANCE, action) => {
-  // console.log('initial state:', state)
   switch (action.type) {
     case types.ADD_DEPOSIT:
       return state + action.amount
