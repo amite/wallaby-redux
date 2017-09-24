@@ -21,6 +21,12 @@ export const addNotification = message => {
   }
 }
 
+export const closeNotification = () => {
+  return {
+    type: types.CLOSE_NOTIFICATION
+  }
+}
+
 export default {
   addDeposit,
   addExpense

@@ -2,10 +2,12 @@ import React, { Component } from 'react'
 import Status from './components/Status'
 import wallet from './img/wallet.png'
 import { connect } from 'react-redux'
+import { Notification } from 'react-notification'
 import {
   addDeposit,
   addExpense,
-  addNotification
+  addNotification,
+  closeNotification
 } from '../state/ducks/transactions/actions'
 import { transactionSelectors } from '../state/ducks/transactions'
 
@@ -25,8 +27,12 @@ class App extends Component {
     if (currentBalance > DEFAULT_SPEND_AMOUNT) {
       this.props.addExpense(DEFAULT_SPEND_AMOUNT)
     } else {
-      console.log('insufficient balance')
+      this.props.addNotification('insufficient balance')
     }
+  }
+
+  closeNotification = () => {
+    this.props.closeNotification()
   }
 
   render() {
@@ -45,6 +51,12 @@ class App extends Component {
             Add Expense
           </button>
         </div>
+        <Notification
+          isActive={this.props.isActive}
+          message={this.props.message}
+          action="Close"
+          onClick={this.closeNotification}
+        />
       </div>
     )
   }
@@ -52,11 +64,16 @@ class App extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    currentBalance: transactionSelectors.getCurrentBalance(state)
+    currentBalance: transactionSelectors.getCurrentBalance(state),
+    isActive: transactionSelectors.getCurrentNotificationState(state),
+    message: transactionSelectors.getCurrentNotificationMessage(state)
   }
 }
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ addDeposit, addExpense }, dispatch)
+  bindActionCreators(
+    { addDeposit, addExpense, addNotification, closeNotification },
+    dispatch
+  )
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

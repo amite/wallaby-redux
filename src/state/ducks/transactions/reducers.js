@@ -24,13 +24,45 @@ const currentBalanceReducer = (state = DEFAULT_BALANCE, action) => {
   }
 }
 
+const notificationsReducer = (
+  state = { isActive: false, message: '' },
+  action
+) => {
+  switch (action.type) {
+    case types.ADD_NOTIFICATION:
+      return {
+        ...state,
+        isActive: true,
+        message: action.message
+      }
+
+    case types.CLOSE_NOTIFICATION:
+      return {
+        ...state,
+        isActive: false
+      }
+
+    default:
+      return state
+  }
+}
+
 const reducer = combineReducers({
   transactions: transactionsReducer,
-  currentBalance: currentBalanceReducer
+  currentBalance: currentBalanceReducer,
+  notifications: notificationsReducer
 })
 
 export const getCurrentBalance = state => {
   return state.transactions.currentBalance
+}
+
+export const getCurrentNotificationState = state => {
+  return state.transactions.notifications.isActive
+}
+
+export const getCurrentNotificationMessage = state => {
+  return state.transactions.notifications.message
 }
 
 export default reducer
