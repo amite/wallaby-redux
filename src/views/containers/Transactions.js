@@ -15,7 +15,7 @@ class Transactions extends Component {
               <th scope="col">Amount</th>
               <th scope="col">Note</th>
               <th scope="col">Type</th>
-              {/* <th scope="col">Balance</th> */}
+              <th scope="col">Balance</th>
               <th scope="col">Date</th>
             </tr>
           </thead>
@@ -25,7 +25,7 @@ class Transactions extends Component {
                 <td data-label="Amount">{transaction.amount}</td>
                 <td data-label="Due Date">{transaction.note}</td>
                 <td data-label="Type">{transaction.type}</td>
-                {/* <td data-label="Balance">{transaction.balance}</td> */}
+                <td data-label="Balance">{transaction.balance}</td>
                 <td data-label="Date">
                   {moment(transaction.date).format('Do MMM | h:mm a')}
                 </td>

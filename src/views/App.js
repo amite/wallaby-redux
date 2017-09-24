@@ -21,7 +21,7 @@ import { bindActionCreators } from 'redux'
 
 class App extends Component {
   handleAddDeposit = () => {
-    this.props.addDeposit(DEFAULT_DEPOSIT_AMOUNT)
+    this.props.addDeposit(DEFAULT_DEPOSIT_AMOUNT, this.props.currentBalance)
   }
 
   handleExpense = () => {

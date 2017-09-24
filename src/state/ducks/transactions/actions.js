@@ -2,12 +2,13 @@ import types from './types'
 import moment from 'moment'
 import faker from 'faker'
 
-export const addDeposit = amount => {
+export const addDeposit = (amount, currentBalance) => {
   return {
     type: types.ADD_DEPOSIT,
     amount,
     note: faker.lorem.words(3),
-    date: moment()
+    date: moment(),
+    balance: currentBalance
   }
 }
 

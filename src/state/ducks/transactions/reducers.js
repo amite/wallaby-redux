@@ -12,13 +12,16 @@ state: {
 const transactionsReducer = (state = [], action) => {
   switch (action.type) {
     case types.ADD_DEPOSIT:
+      console.log(action.balance)
+
       return [
         ...state,
         {
           type: 'Deposit',
           amount: action.amount,
           date: action.date,
-          note: action.note
+          note: action.note,
+          balance: action.balance
         }
       ]
 
