@@ -14,12 +14,16 @@ const transactionsReducer = (state = []) => {
 }
 
 const currentBalanceReducer = (state = DEFAULT_BALANCE) => {
-  return DEFAULT_BALANCE
+  return state.DEFAULT_BALANCE
 }
 
 const reducer = combineReducers({
   transactions: transactionsReducer,
   currentBalance: currentBalanceReducer
 })
+
+export const getCurrentBalance = ({ transactions }) => {
+  return transactions.currentBalance
+}
 
 export default reducer
