@@ -14,6 +14,13 @@ export const addExpense = amount => {
   }
 }
 
+export const addNotification = message => {
+  return {
+    type: types.ADD_NOTIFICATION,
+    message
+  }
+}
+
 export default {
   addDeposit,
   addExpense

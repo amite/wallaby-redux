@@ -2,7 +2,13 @@ import React, { Component } from 'react'
 import Status from './components/Status'
 import wallet from './img/wallet.png'
 import { connect } from 'react-redux'
-import { addDeposit, addExpense } from '../state/ducks/transactions/actions'
+import {
+  addDeposit,
+  addExpense,
+  addNotification
+} from '../state/ducks/transactions/actions'
+import { transactionSelectors } from '../state/ducks/transactions'
+
 import {
   DEFAULT_DEPOSIT_AMOUNT,
   DEFAULT_SPEND_AMOUNT
@@ -15,7 +21,12 @@ class App extends Component {
   }
 
   handleExpense = () => {
-    this.props.addExpense(DEFAULT_SPEND_AMOUNT)
+    const { currentBalance, addExpense } = this.props
+    if (currentBalance > DEFAULT_SPEND_AMOUNT) {
+      this.props.addExpense(DEFAULT_SPEND_AMOUNT)
+    } else {
+      console.log('insufficient balance')
+    }
   }
 
   render() {
@@ -39,7 +50,13 @@ class App extends Component {
   }
 }
 
+const mapStateToProps = (state, ownProps) => {
+  return {
+    currentBalance: transactionSelectors.getCurrentBalance(state)
+  }
+}
+
 const mapDispatchToProps = dispatch =>
   bindActionCreators({ addDeposit, addExpense }, dispatch)
 
-export default connect(null, mapDispatchToProps)(App)
+export default connect(mapStateToProps, mapDispatchToProps)(App)
