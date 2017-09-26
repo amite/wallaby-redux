@@ -5,7 +5,7 @@ import faker from 'faker'
 export const addDeposit = (amount, currentBalance) => {
   return {
     type: types.ADD_DEPOSIT,
-    amount,
+    amount: parseInt(amount, 10),
     note: faker.lorem.words(3),
     date: moment(),
     balance: currentBalance

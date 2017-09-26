@@ -3,6 +3,8 @@ import Status from './components/Status'
 import wallet from './img/wallet.png'
 import { connect } from 'react-redux'
 import { Notification } from 'react-notification'
+import faker from 'faker'
+
 import {
   addDeposit,
   addExpense,
@@ -21,7 +23,10 @@ import { bindActionCreators } from 'redux'
 
 class App extends Component {
   handleAddDeposit = () => {
-    this.props.addDeposit(DEFAULT_DEPOSIT_AMOUNT, this.props.currentBalance)
+    this.props.addDeposit(
+      faker.finance.amount(500, 5000),
+      this.props.currentBalance
+    )
   }
 
   handleExpense = () => {
